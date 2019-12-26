@@ -12,11 +12,15 @@ J = 0;
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
-for j = 1:m
-  
+sum_j = 0
+sum_theta_1 = 0
+sum_theta_2 = 0
+
+
+for j = 1:m 
+  sum_j = sum_j + ((X*theta)*X(j,:) - y(j)).^2
 end
-
-
+  J = (1/2*m)*sum_j
 
 
 % =========================================================================
