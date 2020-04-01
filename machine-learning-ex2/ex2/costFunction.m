@@ -20,7 +20,23 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+<<<<<<< Updated upstream
 
+=======
+% for the htheta(x)): sigmoid(theta'*x)
+for i = 1:m
+  J = J + 1/m * (-y(i) * log(sigmoid(X(i, :)*theta)) - (1 - y(i)) * log(1 - sigmoid(X(i, :)*theta)));
+end
+
+for j = 1:size(theta)
+  for i = 1:m
+    temptemp = sigmoid(X(i, :)*theta) - y(i);
+    temp = 1/m * ((temptemp) * X(i,j));
+    grad(j) = grad(j) + temp;
+  end
+  
+end
+>>>>>>> Stashed changes
 
 
 

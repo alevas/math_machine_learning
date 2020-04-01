@@ -15,6 +15,12 @@ p = zeros(m, 1);
 %               You should set p to a vector of 0's and 1's
 %
 
+<<<<<<< Updated upstream
+=======
+for i = 1:rows(X)
+  p(i) = round(sigmoid(X(i, :)*theta));
+end
+>>>>>>> Stashed changes
 
 
 

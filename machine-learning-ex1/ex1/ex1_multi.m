@@ -113,7 +113,11 @@ fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
          '(using gradient descent):\n $%f\n'], price);
 
 fprintf('Program paused. Press enter to continue.\n');
+<<<<<<< Updated upstream
 str = input('','s');
+=======
+;
+>>>>>>> Stashed changes
 
 %% ================ Part 3: Normal Equations ================
 
