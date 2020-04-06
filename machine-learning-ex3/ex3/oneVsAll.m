@@ -49,7 +49,9 @@ X = [ones(m, 1) X];
 %                 initial_theta, options);
 %
 
-
+for classobaniera = 1:num_labels
+  
+endfor
 
 
 
