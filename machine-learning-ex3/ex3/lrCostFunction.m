@@ -43,7 +43,7 @@ grad = 1/m * (X' * (hx - y));
 temp = lambda / m * theta; 
 temp(1) = 0;   % because we don't add anything for j = 0  
 
-grad = grad + temp
+grad = grad + temp;
 
 
 
