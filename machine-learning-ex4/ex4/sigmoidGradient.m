@@ -13,16 +13,12 @@ g = zeros(size(z));
 %               each value of z (z can be a matrix, vector or scalar).
 
 
-
-
-
-
-
-
-
-
-
-
+for row=1:size(z,1)
+  for col=1:size(z,2)
+    temp = 1 / (1 + exp(-z(row, col)));
+    g(row, col) = temp * (1 - temp);
+  endfor
+endfor
 
 
 % =============================================================

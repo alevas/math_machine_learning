@@ -61,24 +61,53 @@ Theta2_grad = zeros(size(Theta2));
 %               the regularization separately and then add them to Theta1_grad
 %               and Theta2_grad from Part 2.
 %
+alpha_1 = [ones(m, 1) X];
+alpha_2 = sigmoid(alpha_1*Theta1');
+alpha_2 = [ones(m, 1) alpha_2];
+alpha_3 = sigmoid(alpha_2*Theta2');
+hThetaX = alpha_3;
+
+yVectorized = zeros(m, num_labels);
+
+for i=1:m
+  yVectorized(i,y(i)) = 1;
+endfor
+
+for i=1:m
+  for k=1:num_labels
+    J = J + 1/m * (-yVectorized(i,k) * log(hThetaX(i,k)) - (1-yVectorized(i,k)) * log(1- hThetaX(i,k)));
+  endfor
+endfor
+
+%=========REG==========
+sumTheta1 = 0;
+sumTheta2 = 0;
+for j=1:size(Theta1,1)
+  for k=2:size(Theta1,2)
+    sumTheta1 = sumTheta1 + Theta1(j,k)^2;
+  endfor
+endfor
+
+for j=1:size(Theta2,1)
+  for k=2:size(Theta2,2)
+        sumTheta2 = sumTheta2 + Theta2(j,k)^2;
+  endfor
+endfor
+
+J = J + lambda/(2 * m) *( sumTheta1 + sumTheta2);
+
+%=========Grad==========
+
+delta_3 = hThetaX - yVectorized;
+delta_2 = delta_3 * Theta2(:,2:end) .* sigmoidGradient(alpha_1 * Theta1');
+Delta_Gros_2 = zeros(num_labels, hidden_layer_size + 1);
+Delta_Gros_2 = Delta_Gros_2 + delta_3' * alpha_2;
+Delta_Gros_1 = zeros(hidden_layer_size, size(X, 2) +1);
+Delta_Gros_1 = Delta_Gros_1 + delta_2' * alpha_1;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Theta1_grad = (1/m) * Delta_Gros_1 + (lambda/m) * [zeros(size(Theta1, 1), 1) Theta1(:,2:end)];
+Theta2_grad = (1/m) * Delta_Gros_2 + (lambda/m) * [zeros(size(Theta2, 1), 1) Theta2(:,2:end)];
 
 % -------------------------------------------------------------
 
