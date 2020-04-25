@@ -18,12 +18,23 @@ sigma = 0.3;
 %               validation set. For example, 
 %                   predictions = svmPredict(model, Xval);
 %               will return the predictions on the cross validation set.
-%
+%a
 %  Note: You can compute the prediction error using 
 %        mean(double(predictions ~= yval))
 %
 
+pos_vals = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
 
+for i=1:size(pos_vals)
+  for j=1:size(pos_vals)
+    for iminus=size(pos_vals):-1:1
+      for jminus=size(pos_vals):-1:1
+      end
+    end
+  end
+end
+predictions = svmPredict('gaussianKernel', Xval);
+ValCost = mean(double(predictions ~= yval)) / (2 * size(Xval, 2));
 
 
 
