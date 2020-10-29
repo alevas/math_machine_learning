@@ -25,19 +25,35 @@ sigma = 0.3;
 
 pos_vals = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
 
-for i=1:size(pos_vals)
-  for j=1:size(pos_vals)
-    for iminus=size(pos_vals):-1:1
-      for jminus=size(pos_vals):-1:1
-      end
-    end
-  end
-end
-predictions = svmPredict('gaussianKernel', Xval);
-ValCost = mean(double(predictions ~= yval)) / (2 * size(Xval, 2));
 
-
-
+cost_diff = zeros(size(pos_vals)(1,2),  size(pos_vals)(1,2))
+counter = 0
+for sigma_index=1:size(pos_vals)(1,2)
+  for c_index=1:size(pos_vals)(1,2)
+    counter = counter + 1;
+    my_predictions = svmTrain(X, y, pos_vals(c_index), @(x1, x2) gaussianKernel(x1, x2, pos_vals(sigma_index)));
+    best_predictions = svmPredict(my_predictions, Xval);
+    cost_diff(sigma_index, c_index) = mean(double(best_predictions ~= yval));
+  endfor
+endfor
+cost_diff
+%min = cost_diff(1,1)
+%sigma = pos_vals(1)
+%C = pos_vals(1)
+%for sigma_index=1:size(pos_vals)(1,2)
+%  for c_index=1:size(pos_vals)(1,2)
+%     if cost_diff(sigma_index,c_index)<min
+%       min = cost_diff(1,1);
+%       sigma = pos_vals(sigma_index);
+%       C = pos_vals(c_index);
+%     endif
+%  endfor
+%endfor
+[minval, best_sigma_index] = min(min(cost_diff,[],2));
+[minval, best_c_index] = min(min(cost_diff,[],1));
+sigma = pos_vals(best_sigma_index);
+C = pos_vals(best_c_index);
+%ValCost = mean(double(predictions ~= yval)) / (2 * size(Xval, 2));
 
 
 % =========================================================================
