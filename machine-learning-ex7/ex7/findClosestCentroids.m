@@ -20,11 +20,16 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
-
-
-
-
-
+for i=1:size(X,1)
+  centroid_distances = zeros(K, 1);
+  for j=1:K
+    centroid_distances(j) = norm(X(i,:) - centroids(j,:))
+  endfor
+  [minval, idx(i)] = min(centroid_distances);
+  %fprintf('%f\n', centroid_distances);
+  %fprintf('%s\n', '');
+  %[value idx(i)] = min(norm(X(i,:) - centroids, 2, "rows"));
+endfor
 
 
 % =============================================================
