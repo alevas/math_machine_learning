@@ -23,7 +23,7 @@ idx = zeros(size(X,1), 1);
 for i=1:size(X,1)
   centroid_distances = zeros(K, 1);
   for j=1:K
-    centroid_distances(j) = norm(X(i,:) - centroids(j,:))
+    centroid_distances(j) = norm(X(i,:) - centroids(j,:));
   endfor
   [minval, idx(i)] = min(centroid_distances);
   %fprintf('%f\n', centroid_distances);
